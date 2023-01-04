@@ -26,6 +26,7 @@ function divide(value1, value2){
 
 //Function that takes operator and two values and perform that operation on the values
 function operate(operator, value1, value2){
+    operator = operator + '';
     if(operator === '+'){
         return (add(value1, value2));
     }
@@ -43,4 +44,4 @@ function operate(operator, value1, value2){
     }
 }
 
-console.log(operate('+', 10, 15));
+//console.log(operate('+', 10, 15));

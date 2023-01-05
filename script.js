@@ -49,12 +49,28 @@ function operate(operator, value1, value2){
 //Logic to pupulate the Calculator Display based on the button clicked.
 let displayExpression = '';
 const displayEle = document.querySelector('.calculator-display');
-const allButtons = document.querySelectorAll('button');
+const allButtons = document.querySelectorAll('.number-button');
 //Logic to Loops through each button(Node) in fetched nodelist and populated the display by their TextContent
 for(let i=0; i<allButtons.length; i++){
     allButtons[i].addEventListener('click', (e) => {
-        console.log(e.target.textContent);
-        displayExpression = displayExpression + e.target.textContent;
-        displayEle.textContent = displayExpression;
+        if(displayExpression.length > 16){
+            alert("Could not add more digits or operators.");
+            return;
+        }else{
+            console.log(e.target.textContent);
+            displayExpression = displayExpression + e.target.textContent;
+            displayEle.textContent = displayExpression;
+        }
     });
 }
+
+//Logic to clear the Display when CE is clicked
+const clearButton = document.querySelector('.clear-button');
+clearButton.addEventListener('click', (e) => {
+    displayExpression = '';
+    displayEle.textContent = displayExpression;
+});
+
+//Logic for functioning of Calculator Operations
+const operatorButton = document.querySelector('.operator-button');
+

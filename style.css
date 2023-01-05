@@ -35,19 +35,21 @@ body h1 {
 }
 
 .calculator button:hover {
-    box-shadow : 0.5px 1px 5px 2px rgb(255, 255, 255);
-                 
+    box-shadow : -1px 1px 4px 2px rgb(255, 255, 255);            
     margin-top : -0.3vh;
 }
 
-.calculator-container {
-    
+.calculator button:active {  
+    margin-top : 0vh;
+}
+
+.calculator-container {   
     width : 15vw;
     height : 30vh;
 }
 
 .calculator-display {
-    
+    white-space: nowrap;
     display : flex;
     flex-direction : row-reverse;
     justify-content : flex-start;

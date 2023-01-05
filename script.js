@@ -45,3 +45,16 @@ function operate(operator, value1, value2){
 }
 
 //console.log(operate('+', 10, 15));
+
+//Logic to pupulate the Calculator Display based on the button clicked.
+let displayExpression = '';
+const displayEle = document.querySelector('.calculator-display');
+const allButtons = document.querySelectorAll('button');
+//Logic to Loops through each button(Node) in fetched nodelist and populated the display by their TextContent
+for(let i=0; i<allButtons.length; i++){
+    allButtons[i].addEventListener('click', (e) => {
+        console.log(e.target.textContent);
+        displayExpression = displayExpression + e.target.textContent;
+        displayEle.textContent = displayExpression;
+    });
+}

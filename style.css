@@ -1,3 +1,7 @@
+* {
+    box-sizing : border-box;
+}
+
 body{
     padding : 0px;
     margin : 0px;
@@ -22,30 +26,59 @@ body h1 {
 
 .calculator button{
     font-size : 20px;
+    width : 3vw;
+    height : 5vh;
+    background-color : black;
+    color : white;
+    box-shadow : 1px 1px 1px 0.5px rgba(0, 0, 0, 0.505);
+    cursor : pointer;
+}
 
+.calculator button:hover {
+    box-shadow : 0.5px 1px 5px 2px rgb(255, 255, 255);
+                 
+    margin-top : -0.3vh;
+}
+
+.calculator-container {
+    
+    width : 15vw;
+    height : 30vh;
 }
 
 .calculator-display {
-    border : 1px solid blue;
+    
     display : flex;
     flex-direction : row-reverse;
     justify-content : flex-start;
     align-items : flex-end;
     border-radius : 2px;
-    margin-left : -45%;
-    width : 200%;
-    height : 2.5em;
-    background-color : #3749579b;
+    height : 7vh;
+    margin-bottom : 0.5vh;
+    box-shadow : 1px 1px 1px 0.5px rgba(0, 0, 0, 0.505);
+    background-color : black;
     box-sizing: border-box;
     font-size : 24px;
-    color : rgba(255, 255, 255, 0.811);
+    color : white;
     
 }
 
-.calculator-row-1, .calculator-row-2, .calculator-row-3, .calculator-row-4, .calculator-row-5 {
+.calculator-row-1, .calculator-row-2, .calculator-row-3{
     display : flex;
     flex-direction : row;
     justify-content : space-between;
     align-items : center;
     gap : 6%;
+    margin-bottom : 0.5vh; 
+}
+
+.calculator-row-4 {
+    display : flex;
+    flex-direction : row;
+    justify-content : space-between;
+    align-items : center;
+}
+
+#equals {
+    width : 7vw;
 }

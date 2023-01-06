@@ -52,14 +52,14 @@ const displayEle = document.querySelector('.calculator-display');
 const allButtons = document.querySelectorAll('.number-button');
 //Logic to Loops through each button(Node) in fetched nodelist and populated the display by their TextContent
 for(let i=0; i<allButtons.length; i++){
+    console.log('--> ' + displayEle.textContent + '--> ');
     allButtons[i].addEventListener('click', (e) => {
         if(displayExpression.length > 16){
             alert("Could not add more digits or operators.");
             return;
         }else{
-            console.log(e.target.textContent);
-            displayExpression = displayExpression + e.target.textContent;
-            displayEle.textContent = displayExpression;
+            displayEle.textContent+= e.target.textContent;
+            console.log(displayEle.textContent);
         }
     });
 }
@@ -75,34 +75,64 @@ clearButton.addEventListener('click', (e) => {
 let operatorUser = '';
 let userValue1 = 0;
 let userValue2;
-const operatorButton = document.querySelector('.operator-button');
-operatorButton.addEventListener('click', (e) => {
-    displayExpression = displayExpression + e.target.textContent;
-    console.log('display value --> ' + displayExpression);
-    if(displayExpression.indexOf('+') > -1 && (displayExpression.split('+')[1] !== '')){
-        console.log('If Block');
-        displayEle.textContent = '';
-        userValue1 = displayExpression.split('+')[0];
-        userValue2 = displayExpression.split('+')[1];
-        operatorUser = '+';
-        userValue1 = parseInt(userValue1);
-        userValue2 = parseInt(userValue2);
-        let localResult = userValue1 + userValue2;
-        displayEle.textContent = localResult;
+const operatorButton = document.querySelectorAll('.operator-button');
+//console.log(operatorButton);
+for(i=0; i<operatorButton.length; i++){
+    console.log('--> ' + displayEle.textContent + '--> ');
+    operatorButton[i].addEventListener('click', (e) => {
 
-    }
-    else if(displayExpression.indexOf('-') > -1){
-        userValue1 = displayExpression.split('-')[0];
-        operatorUser = '-';
-    }
-    else if(displayExpression.indexOf('x') > -1){
-        userValue1 = displayExpression.split('x')[0];
-        operatorUser = 'x';
-    }
-    else {
-        userValue1 = displayExpression.split('%')[0];
-        operatorUser = '%';
-    }
-
-});
-
+        console.log(displayEle.textContent + '<-->' + e.target.textContent);
+        displayEle.textContent += e.target.textContent;
+        displayExpression = displayEle.textContent;
+        console.log(displayEle.textContent);
+        
+        if(displayExpression.indexOf('+') > -1 && (displayExpression.split('+')[1] !== '')){
+            console.log('getting inside if block');
+            displayEle.textContent = '';
+            userValue1 = displayExpression.split('+')[0];
+            userValue2 = displayExpression.split('+')[1];
+            operatorUser = '+';
+            userValue1 = parseInt(userValue1);
+            userValue2 = parseInt(userValue2);
+            let localResult = operate(operatorUser, userValue1, userValue2);
+            displayExpression = localResult;
+            displayEle.textContent += localResult + e.target.textContent;
+    
+            console.log(typeof(displayEle.textContent));
+        }
+        else if(displayExpression.indexOf('-') > -1 && (displayExpression.split('-')[1] !== '')){
+            displayEle.textContent = '';
+            userValue1 = displayExpression.split('-')[0];
+            userValue2 = displayExpression.split('-')[1];
+            operatorUser = '-';
+            userValue1 = parseInt(userValue1);
+            userValue2 = parseInt(userValue2);
+            let localResult = operate(operatorUser, userValue1, userValue2);
+            displayExpression = localResult;
+            displayEle.textContent += localResult + e.target.textContent;
+        }
+        else if(displayExpression.indexOf('x') > -1 && (displayExpression.split('x')[1] !== '')){
+            displayEle.textContent = '';
+            userValue1 = displayExpression.split('x')[0];
+            userValue2 = displayExpression.split('x')[1];
+            operatorUser = '*';
+            userValue1 = parseInt(userValue1);
+            userValue2 = parseInt(userValue2);
+            let localResult = operate(operatorUser, userValue1, userValue2);
+            displayExpression = localResult;
+            displayEle.textContent += localResult + e.target.textContent;
+        }
+        else if(displayExpression.indexOf('%') > -1 && (displayExpression.split('%')[1] !== '')) {
+            displayEle.textContent = '';
+            userValue1 = displayExpression.split('%')[0];
+            userValue2 = displayExpression.split('%')[1];
+            operatorUser = '/';
+            userValue1 = parseInt(userValue1);
+            userValue2 = parseInt(userValue2);
+            let localResult = operate(operatorUser, userValue1, userValue2);
+            displayExpression = localResult;
+            displayEle.textContent += localResult + e.target.textContent;
+        }
+        
+    });
+}

@@ -72,5 +72,37 @@ clearButton.addEventListener('click', (e) => {
 });
 
 //Logic for functioning of Calculator Operations
+let operatorUser = '';
+let userValue1 = 0;
+let userValue2;
 const operatorButton = document.querySelector('.operator-button');
+operatorButton.addEventListener('click', (e) => {
+    displayExpression = displayExpression + e.target.textContent;
+    console.log('display value --> ' + displayExpression);
+    if(displayExpression.indexOf('+') > -1 && (displayExpression.split('+')[1] !== '')){
+        console.log('If Block');
+        displayEle.textContent = '';
+        userValue1 = displayExpression.split('+')[0];
+        userValue2 = displayExpression.split('+')[1];
+        operatorUser = '+';
+        userValue1 = parseInt(userValue1);
+        userValue2 = parseInt(userValue2);
+        let localResult = userValue1 + userValue2;
+        displayEle.textContent = localResult;
+
+    }
+    else if(displayExpression.indexOf('-') > -1){
+        userValue1 = displayExpression.split('-')[0];
+        operatorUser = '-';
+    }
+    else if(displayExpression.indexOf('x') > -1){
+        userValue1 = displayExpression.split('x')[0];
+        operatorUser = 'x';
+    }
+    else {
+        userValue1 = displayExpression.split('%')[0];
+        operatorUser = '%';
+    }
+
+});
 

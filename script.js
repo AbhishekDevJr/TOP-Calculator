@@ -88,18 +88,38 @@ for(i=0; i<operatorButton.length; i++){
         //console.log(displayEle.textContent);
         
         if(displayExpression.indexOf('+') > -1 && (displayExpression.split('+')[1] !== '')){
+            if(localResult == null){
+                //Original Logic
+                displayEle.textContent = '';
+                userValue1 = displayExpression.split('+')[0];
+                userValue2 = displayExpression.split('+')[1];
+                operatorUser = '+';
+                userValue1 = parseInt(userValue1);
+                userValue2 = parseInt(userValue2);
+                localResult = operate(operatorUser, userValue1, userValue2);
+                console.log( 'userValue1-->' + userValue1 + 'userValue2-->' + userValue2 + 'operatorUser' + operatorUser + 'localResult-->' + localResult);
+                displayExpression = localResult;
+                displayEle.textContent += localResult + e.target.textContent;
+                displayExpression = displayEle.textContent;
+            //console.log(typeof(displayEle.textContent));
+            }
+            else{
+                //New Logic
+                displayEle.textContent = '';
+                console.log(localResult);
+                userValue1 = localResult;
+                userValue2 = displayExpression.split('+')[1];
+                operatorUser = '+';
+                userValue1 = parseInt(userValue1);
+                userValue2 = parseInt(userValue2);
+                localResult = operate(operatorUser, userValue1, userValue2);
+                console.log( 'userValue1-->' + userValue1 + 'userValue2-->' + userValue2 + 'operatorUser' + operatorUser + 'localResult-->' + localResult);
+                displayExpression = localResult;
+                displayEle.textContent += localResult + e.target.textContent;
+                displayExpression = displayEle.textContent;
+            }
             //console.log('getting inside if block');
-            displayEle.textContent = '';
-            userValue1 = displayExpression.split('+')[0];
-            userValue2 = displayExpression.split('+')[1];
-            operatorUser = '+';
-            userValue1 = parseInt(userValue1);
-            userValue2 = parseInt(userValue2);
-            let localResult = operate(operatorUser, userValue1, userValue2);
-            displayExpression = localResult;
-            displayEle.textContent += localResult + e.target.textContent;
-    
-            console.log(typeof(displayEle.textContent));
+            
         }
         else if(displayExpression.indexOf('-') > -1 && (displayExpression.split('-')[1] !== '')){
             if(localResult === null){
@@ -113,9 +133,11 @@ for(i=0; i<operatorButton.length; i++){
                 userValue2 = parseInt(userValue2);
                 //console.log('param1--> ' + userValue1 + 'param2--> ' + userValue2 + 'param3--> ' + operatorUser);
                 localResult = operate(operatorUser, userValue1, userValue2);
+                console.log( 'userValue1-->' + userValue1 + 'userValue2-->' + userValue2 + 'operatorUser' + operatorUser + 'localResult-->' + localResult);
                 displayExpression = localResult;
                 //console.log(localResult + typeof(localResult));
                 displayEle.textContent += localResult + e.target.textContent;
+                displayExpression = displayEle.textContent;
             }
             else {
                 //New Logic
@@ -131,34 +153,73 @@ for(i=0; i<operatorButton.length; i++){
                 userValue2 = parseInt(userValue2);
                 //console.log('param1--> ' + userValue1 + 'param2--> ' + userValue2 + 'param3--> ' + operatorUser);
                 localResult = operate(operatorUser, userValue1, userValue2);
+                console.log( 'userValue1-->' + userValue1 + 'userValue2-->' + userValue2 + 'operatorUser' + operatorUser + 'localResult-->' + localResult);
                 displayExpression = localResult;
                 //console.log(localResult + typeof(localResult));
                 displayEle.textContent += localResult + e.target.textContent;
+                displayExpression = displayEle.textContent;
             }
             
         }
         else if(displayExpression.indexOf('x') > -1 && (displayExpression.split('x')[1] !== '')){
-            displayEle.textContent = '';
-            userValue1 = displayExpression.split('x')[0];
-            userValue2 = displayExpression.split('x')[1];
-            operatorUser = '*';
-            userValue1 = parseInt(userValue1);
-            userValue2 = parseInt(userValue2);
-            let localResult = operate(operatorUser, userValue1, userValue2);
-            displayExpression = localResult;
-            displayEle.textContent += localResult + e.target.textContent;
+            if(localResult == null){
+                //Original Logic
+                displayEle.textContent = '';
+                userValue1 = displayExpression.split('x')[0];
+                userValue2 = displayExpression.split('x')[1];
+                operatorUser = '*';
+                userValue1 = parseInt(userValue1);
+                userValue2 = parseInt(userValue2);
+                localResult = operate(operatorUser, userValue1, userValue2);
+                displayExpression = localResult;
+                displayEle.textContent += localResult + e.target.textContent;
+                displayExpression = displayEle.textContent;
+            }
+            else{
+                //New Logic
+                displayEle.textContent = '';
+                userValue1 = localResult;
+                userValue2 = displayExpression.split('x')[1];
+                operatorUser = '*';
+                userValue1 = parseInt(userValue1);
+                userValue2 = parseInt(userValue2);
+                localResult = operate(operatorUser, userValue1, userValue2);
+                displayExpression = localResult;
+                displayEle.textContent += localResult + e.target.textContent;
+                displayExpression = displayEle.textContent;
+            }
+            
         }
         else if(displayExpression.indexOf('%') > -1 && (displayExpression.split('%')[1] !== '')) {
-            displayEle.textContent = '';
-            userValue1 = displayExpression.split('%')[0];
-            userValue2 = displayExpression.split('%')[1];
-            operatorUser = '/';
-            userValue1 = parseFloat(userValue1);
-            userValue2 = parseFloat(userValue2);
-            let localResult = operate(operatorUser, userValue1, userValue2);
-            console.log( 'userValue1-->' + userValue1 + 'userValue2-->' + userValue2 + 'operatorUser' + operatorUser + 'localResult-->' + localResult);
-            displayExpression = localResult;
-            displayEle.textContent += localResult.toFixed(8) + e.target.textContent;
+            if(localResult == null){
+                //Original Logic
+                displayEle.textContent = '';
+                userValue1 = displayExpression.split('%')[0];
+                userValue2 = displayExpression.split('%')[1];
+                operatorUser = '/';
+                userValue1 = parseFloat(userValue1);
+                userValue2 = parseFloat(userValue2);
+                localResult = operate(operatorUser, userValue1, userValue2);
+                console.log( 'userValue1-->' + userValue1 + 'userValue2-->' + userValue2 + 'operatorUser' + operatorUser + 'localResult-->' + localResult);
+                displayExpression = localResult;
+                displayEle.textContent += localResult.toFixed(8) + e.target.textContent;
+                displayExpression = displayEle.textContent;
+            }
+            else{
+                //New Logic
+                displayEle.textContent = '';
+                userValue1 = localResult;
+                userValue2 = displayExpression.split('%')[1];
+                operatorUser = '/';
+                userValue1 = parseFloat(userValue1);
+                userValue2 = parseFloat(userValue2);
+                localResult = operate(operatorUser, userValue1, userValue2);
+                console.log( 'userValue1-->' + userValue1 + 'userValue2-->' + userValue2 + 'operatorUser' + operatorUser + 'localResult-->' + localResult);
+                displayExpression = localResult;
+                displayEle.textContent += localResult.toFixed(8) + e.target.textContent;
+                displayExpression = displayEle.textContent;
+            }
+           
         }
         
     });

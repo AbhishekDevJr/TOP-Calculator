@@ -104,7 +104,8 @@ for(i=0; i<operatorButton.length; i++){
                 //New Logic
                 displayEle.textContent = '';
                 userValue1 = localResult;
-                userValue2 = displayExpression.split('+')[1];
+                let stringArray = displayExpression.split('+');
+                userValue2 = stringArray[stringArray.length-2];
                 operatorUser = '+';
                 userValue1 = parseInt(userValue1);
                 userValue2 = parseInt(userValue2);
@@ -135,9 +136,9 @@ for(i=0; i<operatorButton.length; i++){
                 //New Logic
                 displayEle.textContent = '';
                 userValue1 = localResult;
-                let lastIndex = displayExpression.lastIndexOf('-');
                 console.log('Display Expression--> ' + displayExpression);
-                userValue2 = displayExpression[lastIndex - 1];
+                let stringArray = displayExpression.split('-');
+                userValue2 = stringArray[stringArray.length-2];
                 operatorUser = '-';
                 userValue2 = parseInt(userValue2);
                 localResult = operate(operatorUser, userValue1, userValue2);
@@ -167,7 +168,8 @@ for(i=0; i<operatorButton.length; i++){
                 //New Logic
                 displayEle.textContent = '';
                 userValue1 = localResult;
-                userValue2 = displayExpression.split('x')[1];
+                let stringArray = displayExpression.split('x');
+                userValue2 = stringArray[stringArray.length-2];
                 operatorUser = '*';
                 userValue1 = parseInt(userValue1);
                 userValue2 = parseInt(userValue2);
@@ -197,7 +199,8 @@ for(i=0; i<operatorButton.length; i++){
                 //New Logic
                 displayEle.textContent = '';
                 userValue1 = localResult;
-                userValue2 = displayExpression.split('%')[1];
+                let stringArray = displayExpression.split('%');
+                userValue2 = stringArray[stringArray.length-2];
                 operatorUser = '/';
                 userValue1 = parseFloat(userValue1);
                 userValue2 = parseFloat(userValue2);

@@ -76,8 +76,8 @@ clearButton.addEventListener('click', (e) => {
     displayEle.textContent = displayExpression;
 });
 
-//Logic for functioning of Calculator Operations
 
+//Logic for functioning of Calculator Operations
 const operatorButton = document.querySelectorAll('.operator-button');
 for(i=0; i<operatorButton.length; i++){
 
@@ -86,7 +86,7 @@ for(i=0; i<operatorButton.length; i++){
         displayEle.textContent += e.target.textContent;
         displayExpression = displayEle.textContent;
         if(displayExpression.indexOf('+') > -1 && (displayExpression.split('+')[1] !== '')){
-
+            console.log('Entering Addition Block');
             if(localResult == null){
                 //Original Logic
                 displayEle.textContent = '';
@@ -114,7 +114,7 @@ for(i=0; i<operatorButton.length; i++){
                 displayEle.textContent += localResult + e.target.textContent;
                 displayExpression = displayEle.textContent;
             }
-
+    
             
         }
         else if(displayExpression.indexOf('-') > -1 && (displayExpression.split('-')[1] !== '')){
@@ -150,7 +150,7 @@ for(i=0; i<operatorButton.length; i++){
             
         }
         else if(displayExpression.indexOf('x') > -1 && (displayExpression.split('x')[1] !== '')){
-
+            console.log('Entering multiplication Block');
             if(localResult == null){
                 //Original Logic
                 displayEle.textContent = '';
@@ -181,7 +181,7 @@ for(i=0; i<operatorButton.length; i++){
             
         }
         else if(displayExpression.indexOf('%') > -1 && (displayExpression.split('%')[1] !== '')) {
-
+            console.log('Entering Division Block');
             if(localResult == null){
                 //Original Logic
                 displayEle.textContent = '';
@@ -218,6 +218,133 @@ for(i=0; i<operatorButton.length; i++){
 //Logic for 'Equals(=)' Button
 const equalsButton = document.querySelector('#equals');
 equalsButton.addEventListener('click', (e) => {
-    displayEle.textContent = displayExpression;
+    displayEle.textContent += e.target.textContent;
+        displayExpression = displayEle.textContent;
+        if(displayExpression.indexOf('+') > -1 && (displayExpression.split('+')[1] !== '')){
+            console.log('Entering Addition Block');
+            if(localResult == null){
+                //Original Logic
+                displayEle.textContent = '';
+                userValue1 = displayExpression.split('+')[0];
+                userValue2 = displayExpression.split('+')[1];
+                operatorUser = '+';
+                userValue1 = parseInt(userValue1);
+                userValue2 = parseInt(userValue2);
+                localResult = operate(operatorUser, userValue1, userValue2);
+                displayExpression = localResult;
+                displayEle.textContent += localResult + e.target.textContent;
+                displayExpression = displayEle.textContent;
+            }
+            else{
+                //New Logic
+                displayEle.textContent = '';
+                userValue1 = localResult;
+                let stringArray = displayExpression.split('+');
+                userValue2 = stringArray[stringArray.length-2];
+                operatorUser = '+';
+                userValue1 = parseInt(userValue1);
+                userValue2 = parseInt(userValue2);
+                localResult = operate(operatorUser, userValue1, userValue2);
+                displayExpression = localResult;
+                displayEle.textContent += localResult + e.target.textContent;
+                displayExpression = displayEle.textContent;
+            }
+    
+            
+        }
+        else if(displayExpression.indexOf('-') > -1 && (displayExpression.split('-')[1] !== '')){
+            console.log('Entering Subtraction Block');
+            if(localResult === null){
+                //Original Logic
+                displayEle.textContent = '';
+                userValue1 = displayExpression.split('-')[0];
+                userValue2 = displayExpression.split('-')[1];
+                operatorUser = '-';
+                userValue1 = parseInt(userValue1);
+                userValue2 = parseInt(userValue2);
+                localResult = operate(operatorUser, userValue1, userValue2);
+                displayExpression = localResult;
+                displayEle.textContent += localResult + e.target.textContent;
+                displayExpression = displayEle.textContent;
+            }
+            else {
+                //New Logic
+                displayEle.textContent = '';
+                userValue1 = localResult;
+                console.log('Display Expression--> ' + displayExpression);
+                let stringArray = displayExpression.split('-');
+                userValue2 = stringArray[stringArray.length-2];
+                operatorUser = '-';
+                userValue2 = parseInt(userValue2);
+                localResult = operate(operatorUser, userValue1, userValue2);
+                console.log('userValue1--> ' + userValue1 + 'userValue2-->' + userValue2 + 'operatorUser--> ' + operatorUser);
+                displayExpression = localResult;
+                displayEle.textContent += localResult + e.target.textContent;
+                displayExpression = displayEle.textContent;
+            }
+            
+        }
+        else if(displayExpression.indexOf('x') > -1 && (displayExpression.split('x')[1] !== '')){
+            console.log('Entering multiplication Block');
+            if(localResult == null){
+                //Original Logic
+                displayEle.textContent = '';
+                userValue1 = displayExpression.split('x')[0];
+                userValue2 = displayExpression.split('x')[1];
+                operatorUser = '*';
+                userValue1 = parseInt(userValue1);
+                userValue2 = parseInt(userValue2);
+                localResult = operate(operatorUser, userValue1, userValue2);
+                displayExpression = localResult;
+                displayEle.textContent += localResult + e.target.textContent;
+                displayExpression = displayEle.textContent;
+            }
+            else{
+                //New Logic
+                displayEle.textContent = '';
+                userValue1 = localResult;
+                let stringArray = displayExpression.split('x');
+                userValue2 = stringArray[stringArray.length-2];
+                operatorUser = '*';
+                userValue1 = parseInt(userValue1);
+                userValue2 = parseInt(userValue2);
+                localResult = operate(operatorUser, userValue1, userValue2);
+                displayExpression = localResult;
+                displayEle.textContent += localResult + e.target.textContent;
+                displayExpression = displayEle.textContent;
+            }
+            
+        }
+        else if(displayExpression.indexOf('%') > -1 && (displayExpression.split('%')[1] !== '')) {
+            console.log('Entering Division Block');
+            if(localResult == null){
+                //Original Logic
+                displayEle.textContent = '';
+                userValue1 = displayExpression.split('%')[0];
+                userValue2 = displayExpression.split('%')[1];
+                operatorUser = '/';
+                userValue1 = parseFloat(userValue1);
+                userValue2 = parseFloat(userValue2);
+                localResult = operate(operatorUser, userValue1, userValue2);
+                displayExpression = localResult;
+                displayEle.textContent += localResult.toFixed(8) + e.target.textContent;
+                displayExpression = displayEle.textContent;
+            }
+            else{
+                //New Logic
+                displayEle.textContent = '';
+                userValue1 = localResult;
+                let stringArray = displayExpression.split('%');
+                userValue2 = stringArray[stringArray.length-2];
+                operatorUser = '/';
+                userValue1 = parseFloat(userValue1);
+                userValue2 = parseFloat(userValue2);
+                localResult = operate(operatorUser, userValue1, userValue2);
+                displayExpression = localResult;
+                displayEle.textContent += localResult.toFixed(8) + e.target.textContent;
+                displayExpression = displayEle.textContent;
+            }
+           
+        }
 });
 
